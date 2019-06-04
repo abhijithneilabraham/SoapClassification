@@ -49,16 +49,19 @@ def load_image():
 def load_video():
     model=load_model()
     cam=cv2.VideoCapture(0)
+    '''
     ret,frame=cam.read()
     cv2.imwrite('test.jpg',frame)
+    '''
     while 1:
+        
         ret2,frame2=cam.read()
         x0, y0, width = 200, 220, 300
         cv2.rectangle(frame2, (x0,y0), (x0+width-1,y0+width-1),dataColor, 12)
      
         roi = frame2[y0:y0+width,x0:x0+width]
-        cv2.imwrite('test.jpg',roi)
-        image=cv2.imread('test.jpg')
+        #cv2.imwrite('test.jpg',roi)
+        image=roi
         image = cv2.resize(image, (64, 64))
         image=np.array([image])
         image=pre_process(image)
