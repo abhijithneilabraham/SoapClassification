@@ -1,11 +1,34 @@
+
+
+def pip_auto_install():
+    """
+    Automatically installs all requirements if pip is installed.
+    """
+    try:
+        from pip._internal import main as pip_main
+        pip_main(['install', '-r', 'requirements.txt'])
+    except ImportError:
+        print("Failed to import pip. Please ensure that pip is installed.")
+        print("For further instructions see "
+              "https://pip.pypa.io/en/stable/installing/")
+        sys.exit(-1)
+    except Exception as err:
+        print("Failed to install pip requirements: " + err.message)
+        sys.exit(-1)
+
+
+pip_auto_install()
+
+
 import numpy as np
 import os
 #from scipy.misc import imread,imresize
-import PIL
+
 from keras.models import model_from_json
 import tensorflow as tf
 import pickle
 import cv2
+import sys
 dataColor = (0,255,0)
 font = cv2.FONT_HERSHEY_SIMPLEX
 fx, fy, fh = 10, 50, 45

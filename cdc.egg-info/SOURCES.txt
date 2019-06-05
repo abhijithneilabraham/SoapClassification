@@ -5,6 +5,7 @@ cdc.egg-info/SOURCES.txt
 cdc.egg-info/dependency_links.txt
 cdc.egg-info/requires.txt
 cdc.egg-info/top_level.txt
+sample_classification/__init__.py
 sample_classification/load_data.py
 sample_classification/predict.py
 sample_classification/train.py
