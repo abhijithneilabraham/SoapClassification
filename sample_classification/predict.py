@@ -49,10 +49,7 @@ def load_image():
 def load_video():
     model=load_model()
     cam=cv2.VideoCapture(0)
-    '''
-    ret,frame=cam.read()
-    cv2.imwrite('test.jpg',frame)
-    '''
+   
     while 1:
         
         ret2,frame2=cam.read()
@@ -78,30 +75,7 @@ def load_video():
         
         
         
-'''
-def load_video():
-    model = load_model()
-    #model = tf.keras.models.load_model('model_face.h5')
-    
-    x0, y0, width = 200, 220, 300
-    cv2.namedWindow('Original', cv2.WINDOW_NORMAL)
-    cam = cv2.VideoCapture(0)
-    while i>1:
-        ret, frame = cam.read()
-        frame = cv2.flip(frame, 1) # mirror
-        window =frame
-        cv2.rectangle(window, (x0,y0), (x0+width-1,y0+width-1),dataColor, 12)
-        roi = frame[y0:y0+width,x0:x0+width]
-        img = np.float32(roi)/255.
-        img = np.expand_dims(img, axis=0)
-        img = np.expand_dims(img, axis=-1)
-        pred = classes[np.argmax(model.predict(img))]
-        cv2.putText(window, 'Prediction: %s' % (pred), (fx,fy+2*fh), font, 1.0, (245,210,65), 2, 1)
-        cv2.imshow('Original', window)
-    if cv2.waitKey(10) & 0xFF == ord('q'):
-        cam.release()
-        cv2.destroyAllWindows()
-'''
+
     
         
 '''
