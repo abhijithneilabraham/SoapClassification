@@ -12,6 +12,7 @@ import load_data
 from keras.models import Sequential
 from keras.layers import Dense
 from sklearn.model_selection import train_test_split
+import numpy as np
 
 K.set_image_dim_ordering('tf')
 # fix random seed for reproducibility
@@ -19,7 +20,8 @@ seed = 7
 numpy.random.seed(seed)
 
 def pre_process(X):
-
+    X=np.array(X)
+    
     # normalize inputs from 0-255 to 0.0-1.0
     X=X.astype('float32')
     X = X / 255.0
@@ -68,7 +70,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random
 epochs = 10
 #define model
 model=define_model(num_classes,epochs)
-
+print(X_train)
 
 # Fit the model
 history=model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=epochs, batch_size=32)

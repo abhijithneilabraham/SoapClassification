@@ -87,9 +87,9 @@ def load_video():
         image=pre_process(image)
         
         #frame2[y0:y0+width,x0:x0+width] = cv2.cvtColor(roi, cv2.COLOR_GRAY2BGR)
-        pred = model.predict(image)
-        pred=int_to_word_out[np.argmax(pred)]
-        cv2.putText(frame2, 'Prediction: %s' % (pred), (fx,fy+2*fh), font, 1.0, (245,210,65), 2, 1)
+        prednum = model.predict(image)
+        pred=int_to_word_out[np.argmax(prednum)]
+        cv2.putText(frame2, 'Prediction: %s value : %s' % (prednum,pred), (fx,fy+2*fh), font, 1.0, (245,210,65), 2, 1)
         cv2.imshow('Original', frame2)
         if cv2.waitKey(10) & 0xFF == ord('q'):
             cam.release()
