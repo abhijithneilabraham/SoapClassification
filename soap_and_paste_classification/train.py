@@ -1,20 +1,20 @@
 import numpy
 import matplotlib.pyplot as plt
-from keras.layers import Dropout
-from keras.layers import Flatten
-from keras.constraints import maxnorm
-from keras.optimizers import SGD
-from keras.layers import Conv2D
-from keras.layers.convolutional import MaxPooling2D
-from keras.utils import np_utils
-from keras import backend as K
+from tensorflow.keras.layers import Dropout
+from tensorflow.keras.layers import Flatten
+from tensorflow.keras.constraints import max_norm
+from tensorflow.keras.optimizers import SGD
+from tensorflow.keras.layers import Conv2D
+from tensorflow.keras.layers.convolutional import MaxPooling2D
+from tensorflow.keras.utils import np_utils
+from tensorflow.keras import backend as K
 import load_data
-from keras.models import Sequential
-from keras.layers import Dense
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
 from sklearn.model_selection import train_test_split
 import numpy as np
 
-K.set_image_dim_ordering('tf')
+K.common.image_dim_ordering('tf')
 # fix random seed for reproducibility
 seed = 7
 numpy.random.seed(seed)
@@ -37,12 +37,12 @@ def one_hot_encode(y):
 def define_model(num_classes,epochs):
     # Create the model
     model = Sequential()
-    model.add(Conv2D(32, (3, 3), input_shape=(64, 64, 3), padding='same', activation='relu', kernel_constraint=maxnorm(3)))
+    model.add(Conv2D(32, (3, 3), input_shape=(64, 64, 3), padding='same', activation='relu', kernel_constraint=max_norm(3)))
     model.add(Dropout(0.2))
-    model.add(Conv2D(32, (3, 3), activation='relu', padding='same', kernel_constraint=maxnorm(3)))
+    model.add(Conv2D(32, (3, 3), activation='relu', padding='same', kernel_constraint=max_norm(3)))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Flatten())
-    model.add(Dense(512, activation='relu', kernel_constraint=maxnorm(3)))
+    model.add(Dense(512, activation='relu', kernel_constraint=max_norm(3)))
     model.add(Dropout(0.5))
     model.add(Dense(num_classes, activation='softmax'))
     # Compile model
